@@ -1,195 +1,471 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tharun | Personal Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Tharun | Personal Website</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b0b0f;
-            color: white;
-            line-height: 1.6;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-        nav {
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #111116;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
 
-        nav h2 {
-            color: #00d9ff;
-        }
+/* Animated background */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #00eaff;
+    filter: blur(180px);
+    opacity: 0.15;
+    top: -150px;
+    left: -150px;
+    animation: moveGlow 8s infinite alternate;
+    z-index: -1;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #8a2be2;
+    filter: blur(180px);
+    opacity: 0.15;
+    bottom: -150px;
+    right: -150px;
+    animation: moveGlow2 10s infinite alternate;
+    z-index: -1;
+}
 
-        nav a:hover {
-            color: #00d9ff;
-        }
+@keyframes moveGlow {
+    from {
+        transform: translate(0,0);
+    }
+    to {
+        transform: translate(250px,200px);
+    }
+}
 
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-        }
+@keyframes moveGlow2 {
+    from {
+        transform: translate(0,0);
+    }
+    to {
+        transform: translate(-200px,-150px);
+    }
+}
 
-        .hero h1 {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-        .hero h1 span {
-            color: #00d9ff;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00eaff;
+}
 
-        .hero p {
-            color: #aaa;
-            font-size: 20px;
-            max-width: 600px;
-        }
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
 
-        .button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 25px;
-            background: #00d9ff;
-            color: #000;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-        section {
-            padding: 80px 10%;
-            text-align: center;
-        }
+nav a:hover {
+    color: #00eaff;
+}
 
-        section h2 {
-            font-size: 35px;
-            margin-bottom: 25px;
-            color: #00d9ff;
-        }
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px;
+}
 
-        section p {
-            max-width: 700px;
-            margin: auto;
-            color: #bbb;
-        }
+.hero-content {
+    animation: heroAppear 1.5s ease;
+}
 
-        .skills {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+@keyframes heroAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .skill {
-            background: #17171f;
-            padding: 15px 25px;
-            border-radius: 10px;
-        }
+.hero h1 {
+    font-size: clamp(45px, 8vw, 90px);
+    margin-bottom: 15px;
+}
 
-        footer {
-            padding: 30px;
-            text-align: center;
-            background: #111116;
-            color: #777;
-        }
+.hero h1 span {
+    color: #00eaff;
+    text-shadow: 0 0 25px #00eaff;
+}
 
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 40px;
-            }
+.hero p {
+    font-size: 22px;
+    color: #aaa;
+    min-height: 30px;
+}
 
-            nav {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+.cursor {
+    color: #00eaff;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 30px;
+    border: 1px solid #00eaff;
+    border-radius: 30px;
+    color: #00eaff;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.btn:hover {
+    background: #00eaff;
+    color: #000;
+    box-shadow: 0 0 30px #00eaff;
+    transform: translateY(-5px);
+}
+
+/* Sections */
+section {
+    padding: 100px 10%;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+section h2 span {
+    color: #00eaff;
+}
+
+/* About */
+.about {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    line-height: 1.8;
+    color: #bbb;
+    font-size: 18px;
+}
+
+/* Skills */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.skill {
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.04);
+    transition: 0.4s;
+}
+
+.skill:hover {
+    transform: translateY(-12px) scale(1.03);
+    border-color: #00eaff;
+    box-shadow: 0 0 25px rgba(0,234,255,0.3);
+}
+
+.skill h3 {
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+/* Contact */
+.contact {
+    text-align: center;
+}
+
+.contact a {
+    color: #00eaff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* Scroll animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    nav {
+        padding: 18px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    section {
+        padding: 80px 6%;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <nav>
-        <h2>THARUN</h2>
+<!-- Navigation -->
+<nav>
+    <div class="logo">THARUN</div>
 
-        <div>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <div class="hero">
-        <h1>Hi, I'm <span>Tharun</span> 👋</h1>
+<!-- Hero -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Hi, I'm <span>Tharun</span> 👋
+        </h1>
 
         <p>
-            Welcome to my personal website.
-            I'm exploring technology, AI, web development and creative projects.
+            I'm <span id="typing"></span><span class="cursor">|</span>
         </p>
 
-        <a href="#about" class="button">Explore My Website</a>
+        <a href="#about" class="btn">
+            Explore My Website ↓
+        </a>
+
     </div>
 
-    <section id="about">
-        <h2>About Me</h2>
+</section>
 
+<!-- About -->
+<section id="about" class="reveal">
+
+    <h2>About <span>Me</span></h2>
+
+    <div class="about">
         <p>
-            I'm passionate about technology and learning new things.
-            This website is my personal space where I can showcase
-            my projects, skills and interests.
+            Hi! I'm Tharun. I'm interested in technology,
+            web development, AI and creating cool digital projects.
+            This website is my personal space on the internet.
         </p>
-    </section>
+    </div>
 
-    <section id="skills">
-        <h2>My Skills</h2>
+</section>
 
-        <div class="skills">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">AI</div>
-            <div class="skill">Web Development</div>
+<!-- Skills -->
+<section id="skills" class="reveal">
+
+    <h2>My <span>Skills</span></h2>
+
+    <div class="skills">
+
+        <div class="skill">
+            <h3>HTML</h3>
+            <p>Building website structures.</p>
         </div>
-    </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
+        <div class="skill">
+            <h3>CSS</h3>
+            <p>Designing beautiful interfaces.</p>
+        </div>
 
-        <p>
-            You can add your Instagram, GitHub, YouTube or email links here.
-        </p>
+        <div class="skill">
+            <h3>JavaScript</h3>
+            <p>Adding interactive features.</p>
+        </div>
 
-        <a href="https://github.com/tharun2726"
-           class="button"
-           target="_blank">
-            My GitHub
-        </a>
-    </section>
+        <div class="skill">
+            <h3>AI</h3>
+            <p>Exploring AI tools and technology.</p>
+        </div>
 
-    <footer>
-        © 2026 Tharun. All rights reserved.
-    </footer>
+        <div class="skill">
+            <h3>Web Development</h3>
+            <p>Creating modern websites.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact reveal">
+
+    <h2>Contact <span>Me</span></h2>
+
+    <p>
+        Check out my GitHub:
+    </p>
+
+    <br>
+
+    <a href="https://github.com/tharun2726" target="_blank">
+        github.com/tharun2726
+    </a>
+
+</section>
+
+<footer>
+    © 2026 Tharun. All Rights Reserved.
+</footer>
+
+<script>
+
+/* Typing animation */
+
+const words = [
+    "a Web Developer",
+    "an AI Enthusiast",
+    "a Tech Explorer",
+    "a Creative Developer"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+
+    const typing = document.getElementById("typing");
+    const word = words[wordIndex];
+
+    if (!deleting) {
+
+        typing.textContent = word.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === word.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1500);
+            return;
+        }
+
+    } else {
+
+        typing.textContent = word.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+            deleting = false;
+            wordIndex++;
+
+            if (wordIndex === words.length) {
+                wordIndex = 0;
+            }
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 50 : 100);
+}
+
+typeEffect();
+
+
+/* Scroll reveal animation */
+
+function revealOnScroll() {
+
+    const elements = document.querySelectorAll(".reveal");
+
+    elements.forEach(element => {
+
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
+        }
+
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+</script>
 
 </body>
 </html>
