@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,11 @@
 <title>Tharun | Personal Website</title>
 
 <style>
+
+/* =========================
+   BASIC RESET
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +26,11 @@ body {
     overflow-x: hidden;
 }
 
-/* Animated background */
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
 body::before {
     content: "";
     position: fixed;
@@ -33,7 +42,7 @@ body::before {
     top: -150px;
     left: -150px;
     animation: moveGlow 8s infinite alternate;
-    z-index: -1;
+    z-index: -2;
 }
 
 body::after {
@@ -47,28 +56,78 @@ body::after {
     bottom: -150px;
     right: -150px;
     animation: moveGlow2 10s infinite alternate;
-    z-index: -1;
+    z-index: -2;
 }
 
 @keyframes moveGlow {
+
     from {
         transform: translate(0,0);
     }
+
     to {
         transform: translate(250px,200px);
     }
 }
 
 @keyframes moveGlow2 {
+
     from {
         transform: translate(0,0);
     }
+
     to {
         transform: translate(-200px,-150px);
     }
 }
 
-/* Navigation */
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: #00eaff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00eaff;
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+
+    0% {
+        transform: translateY(110vh) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-10vh) translateX(80px);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
 nav {
     position: fixed;
     top: 0;
@@ -87,6 +146,7 @@ nav {
     font-size: 24px;
     font-weight: bold;
     color: #00eaff;
+    text-shadow: 0 0 15px #00eaff;
 }
 
 nav ul {
@@ -105,14 +165,18 @@ nav a:hover {
     color: #00eaff;
 }
 
-/* Hero */
+
+/* =========================
+   HERO
+========================= */
+
 .hero {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 100px 20px;
+    padding: 120px 20px 80px;
 }
 
 .hero-content {
@@ -120,15 +184,140 @@ nav a:hover {
 }
 
 @keyframes heroAppear {
+
     from {
         opacity: 0;
         transform: translateY(50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+
+/* =========================
+   PROFILE PHOTO
+========================= */
+
+.profile-container {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 35px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Rotating ring */
+
+.profile-container::before {
+    content: "";
+    position: absolute;
+
+    width: 205px;
+    height: 205px;
+
+    border-radius: 50%;
+
+    border: 3px solid transparent;
+    border-top-color: #00eaff;
+    border-right-color: #8a2be2;
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 35px rgba(0,234,255,0.5);
+
+    animation: rotateRing 4s linear infinite;
+}
+
+@keyframes rotateRing {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Pulsing outer ring */
+
+.profile-container::after {
+    content: "";
+
+    position: absolute;
+
+    width: 225px;
+    height: 225px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0,234,255,0.25);
+
+    animation: pulseRing 2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+
+    0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+
+/* Profile image */
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+    object-position: center top;
+
+    border-radius: 50%;
+
+    border: 4px solid #050505;
+
+    position: relative;
+    z-index: 2;
+
+    filter: grayscale(100%);
+
+    box-shadow:
+        0 0 20px rgba(0,234,255,0.4),
+        0 0 50px rgba(138,43,226,0.25);
+
+    transition: 0.5s;
+}
+
+.profile-photo:hover {
+
+    transform: scale(1.05);
+
+    filter: grayscale(0%);
+
+    box-shadow:
+        0 0 30px #00eaff,
+        0 0 70px rgba(138,43,226,0.5);
+}
+
+
+/* =========================
+   HERO TEXT
+========================= */
 
 .hero h1 {
     font-size: clamp(45px, 8vw, 90px);
@@ -152,37 +341,60 @@ nav a:hover {
 }
 
 @keyframes blink {
+
     50% {
         opacity: 0;
     }
 }
 
+
+/* =========================
+   BUTTON
+========================= */
+
 .btn {
     display: inline-block;
+
     margin-top: 30px;
+
     padding: 14px 30px;
+
     border: 1px solid #00eaff;
     border-radius: 30px;
+
     color: #00eaff;
+
     text-decoration: none;
+
     transition: 0.4s;
 }
 
 .btn:hover {
+
     background: #00eaff;
+
     color: #000;
+
     box-shadow: 0 0 30px #00eaff;
+
     transform: translateY(-5px);
 }
 
-/* Sections */
+
+/* =========================
+   SECTIONS
+========================= */
+
 section {
     padding: 100px 10%;
 }
 
 section h2 {
+
     text-align: center;
+
     font-size: 40px;
+
     margin-bottom: 50px;
 }
 
@@ -190,50 +402,89 @@ section h2 span {
     color: #00eaff;
 }
 
-/* About */
+
+/* =========================
+   ABOUT
+========================= */
+
 .about {
+
     max-width: 800px;
+
     margin: auto;
+
     text-align: center;
+
     line-height: 1.8;
+
     color: #bbb;
+
     font-size: 18px;
 }
 
-/* Skills */
+
+/* =========================
+   SKILLS
+========================= */
+
 .skills {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 25px;
 }
 
 .skill {
+
     padding: 30px;
+
     text-align: center;
+
     border: 1px solid rgba(255,255,255,0.1);
+
     border-radius: 20px;
+
     background: rgba(255,255,255,0.04);
+
     transition: 0.4s;
 }
 
 .skill:hover {
-    transform: translateY(-12px) scale(1.03);
+
+    transform:
+        translateY(-12px)
+        scale(1.03);
+
     border-color: #00eaff;
-    box-shadow: 0 0 25px rgba(0,234,255,0.3);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,234,255,0.3);
 }
 
 .skill h3 {
+
     color: #00eaff;
+
     margin-bottom: 10px;
 }
 
-/* Contact */
+
+/* =========================
+   CONTACT
+========================= */
+
 .contact {
     text-align: center;
 }
 
 .contact a {
+
     color: #00eaff;
+
     text-decoration: none;
 }
 
@@ -241,27 +492,53 @@ section h2 span {
     text-decoration: underline;
 }
 
-/* Scroll animation */
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
 .reveal {
+
     opacity: 0;
-    transform: translateY(60px);
-    transition: 1s ease;
+
+    transform:
+        translateY(60px);
+
+    transition:
+        1s ease;
 }
 
 .reveal.active {
+
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
-/* Footer */
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
+
     text-align: center;
+
     padding: 30px;
+
     color: #777;
-    border-top: 1px solid rgba(255,255,255,0.08);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
-/* Mobile */
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
 
     nav {
@@ -269,201 +546,597 @@ footer {
     }
 
     nav ul {
-        gap: 12px;
-        font-size: 14px;
+
+        gap: 10px;
+
+        font-size: 13px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .hero {
+
+        padding-top: 130px;
+    }
+
+    .profile-container {
+
+        width: 150px;
+        height: 150px;
+
+        margin-bottom: 30px;
+    }
+
+    .profile-photo {
+
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-container::before {
+
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile-container::after {
+
+        width: 175px;
+        height: 175px;
+    }
+
+    .hero p {
+        font-size: 18px;
     }
 
     section {
         padding: 80px 6%;
     }
 
-    .hero p {
-        font-size: 18px;
+    section h2 {
+        font-size: 32px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- Navigation -->
+
+<!-- =========================
+     FLOATING PARTICLES
+========================= -->
+
+<div id="particles"></div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
 <nav>
-    <div class="logo">THARUN</div>
+
+    <div class="logo">
+        THARUN
+    </div>
 
     <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+        <li>
+            <a href="#home">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#skills">
+                Skills
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact">
+                Contact
+            </a>
+        </li>
+
     </ul>
+
 </nav>
 
-<!-- Hero -->
-<section class="hero" id="home">
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+    class="hero"
+    id="home"
+>
 
     <div class="hero-content">
 
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="profile-container">
+
+            <img
+                src="profile.jpg"
+                alt="Tharun Profile Photo"
+                class="profile-photo"
+            >
+
+        </div>
+
+
+        <!-- TITLE -->
+
         <h1>
-            Hi, I'm <span>Tharun</span> 👋
+
+            Hi, I'm
+            <span>
+                Tharun
+            </span>
+
+            👋
+
         </h1>
 
+
+        <!-- TYPING TEXT -->
+
         <p>
-            I'm <span id="typing"></span><span class="cursor">|</span>
+
+            I'm
+            <span id="typing"></span>
+
+            <span class="cursor">
+                |
+            </span>
+
         </p>
 
-        <a href="#about" class="btn">
+
+        <!-- BUTTON -->
+
+        <a
+            href="#about"
+            class="btn"
+        >
+
             Explore My Website ↓
+
         </a>
 
     </div>
 
 </section>
 
-<!-- About -->
-<section id="about" class="reveal">
 
-    <h2>About <span>Me</span></h2>
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    id="about"
+    class="reveal"
+>
+
+    <h2>
+
+        About
+        <span>
+            Me
+        </span>
+
+    </h2>
+
 
     <div class="about">
+
         <p>
-            Hi! I'm Tharun. I'm interested in technology,
-            web development, AI and creating cool digital projects.
-            This website is my personal space on the internet.
+
+            Hi! I'm Tharun.
+            I'm interested in technology,
+            web development, AI and
+            creating cool digital projects.
+
+            This website is my personal
+            space on the internet.
+
         </p>
+
     </div>
 
 </section>
 
-<!-- Skills -->
-<section id="skills" class="reveal">
 
-    <h2>My <span>Skills</span></h2>
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section
+    id="skills"
+    class="reveal"
+>
+
+    <h2>
+
+        My
+        <span>
+            Skills
+        </span>
+
+    </h2>
+
 
     <div class="skills">
 
-        <div class="skill">
-            <h3>HTML</h3>
-            <p>Building website structures.</p>
-        </div>
 
         <div class="skill">
-            <h3>CSS</h3>
-            <p>Designing beautiful interfaces.</p>
+
+            <h3>
+                HTML
+            </h3>
+
+            <p>
+                Building website structures.
+            </p>
+
         </div>
 
-        <div class="skill">
-            <h3>JavaScript</h3>
-            <p>Adding interactive features.</p>
-        </div>
 
         <div class="skill">
-            <h3>AI</h3>
-            <p>Exploring AI tools and technology.</p>
+
+            <h3>
+                CSS
+            </h3>
+
+            <p>
+                Designing beautiful interfaces.
+            </p>
+
         </div>
 
+
         <div class="skill">
-            <h3>Web Development</h3>
-            <p>Creating modern websites.</p>
+
+            <h3>
+                JavaScript
+            </h3>
+
+            <p>
+                Adding interactive features.
+            </p>
+
         </div>
+
+
+        <div class="skill">
+
+            <h3>
+                AI
+            </h3>
+
+            <p>
+                Exploring AI tools and technology.
+            </p>
+
+        </div>
+
+
+        <div class="skill">
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Creating modern websites.
+            </p>
+
+        </div>
+
 
     </div>
 
 </section>
 
-<!-- Contact -->
-<section id="contact" class="contact reveal">
 
-    <h2>Contact <span>Me</span></h2>
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    id="contact"
+    class="contact reveal"
+>
+
+    <h2>
+
+        Contact
+        <span>
+            Me
+        </span>
+
+    </h2>
+
 
     <p>
         Check out my GitHub:
     </p>
 
+
     <br>
 
-    <a href="https://github.com/tharun2726" target="_blank">
+
+    <a
+        href="https://github.com/tharun2726"
+        target="_blank"
+    >
+
         github.com/tharun2726
+
     </a>
 
 </section>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    © 2026 Tharun. All Rights Reserved.
+
+    © 2026 Tharun.
+    All Rights Reserved.
+
 </footer>
+
 
 <script>
 
-/* Typing animation */
+
+/* =========================
+   TYPING ANIMATION
+========================= */
 
 const words = [
+
     "a Web Developer",
+
     "an AI Enthusiast",
+
     "a Tech Explorer",
+
     "a Creative Developer"
+
 ];
 
+
 let wordIndex = 0;
+
 let charIndex = 0;
+
 let deleting = false;
+
 
 function typeEffect() {
 
-    const typing = document.getElementById("typing");
-    const word = words[wordIndex];
+
+    const typing =
+        document.getElementById("typing");
+
+
+    const word =
+        words[wordIndex];
+
 
     if (!deleting) {
 
-        typing.textContent = word.substring(0, charIndex + 1);
+
+        typing.textContent =
+            word.substring(
+                0,
+                charIndex + 1
+            );
+
+
         charIndex++;
 
-        if (charIndex === word.length) {
+
+        if (
+            charIndex ===
+            word.length
+        ) {
+
             deleting = true;
-            setTimeout(typeEffect, 1500);
+
+            setTimeout(
+                typeEffect,
+                1500
+            );
+
             return;
+
         }
+
 
     } else {
 
-        typing.textContent = word.substring(0, charIndex - 1);
+
+        typing.textContent =
+            word.substring(
+                0,
+                charIndex - 1
+            );
+
+
         charIndex--;
 
+
         if (charIndex === 0) {
+
             deleting = false;
+
             wordIndex++;
 
-            if (wordIndex === words.length) {
+
+            if (
+                wordIndex ===
+                words.length
+            ) {
+
                 wordIndex = 0;
+
             }
+
         }
+
     }
 
-    setTimeout(typeEffect, deleting ? 50 : 100);
+
+    setTimeout(
+
+        typeEffect,
+
+        deleting
+            ? 50
+            : 100
+
+    );
+
 }
+
 
 typeEffect();
 
 
-/* Scroll reveal animation */
+
+/* =========================
+   SCROLL REVEAL
+========================= */
 
 function revealOnScroll() {
 
-    const elements = document.querySelectorAll(".reveal");
+
+    const elements =
+        document.querySelectorAll(
+            ".reveal"
+        );
+
 
     elements.forEach(element => {
 
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
 
-        if (elementTop < windowHeight - 100) {
-            element.classList.add("active");
+        const windowHeight =
+            window.innerHeight;
+
+
+        const elementTop =
+            element.getBoundingClientRect()
+            .top;
+
+
+        if (
+            elementTop <
+            windowHeight - 100
+        ) {
+
+            element.classList.add(
+                "active"
+            );
+
         }
 
     });
+
 }
 
-window.addEventListener("scroll", revealOnScroll);
+
+window.addEventListener(
+    "scroll",
+    revealOnScroll
+);
+
 
 revealOnScroll();
+
+
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+const particleContainer =
+    document.getElementById(
+        "particles"
+    );
+
+
+const particleCount = 70;
+
+
+for (
+    let i = 0;
+    i < particleCount;
+    i++
+) {
+
+
+    const particle =
+        document.createElement(
+            "div"
+        );
+
+
+    particle.classList.add(
+        "particle"
+    );
+
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+
+    particle.style.animationDuration =
+        (5 + Math.random() * 10)
+        + "s";
+
+
+    particle.style.animationDelay =
+        Math.random() * 10
+        + "s";
+
+
+    const size =
+        1 + Math.random() * 3;
+
+
+    particle.style.width =
+        size + "px";
+
+
+    particle.style.height =
+        size + "px";
+
+
+    particleContainer.appendChild(
+        particle
+    );
+
+}
 
 </script>
 
