@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tharun | Personal Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0f;
+            color: white;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111116;
+        }
+
+        nav h2 {
+            color: #00d9ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #00d9ff;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 20px;
+            max-width: 600px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #00d9ff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 35px;
+            margin-bottom: 25px;
+            color: #00d9ff;
+        }
+
+        section p {
+            max-width: 700px;
+            margin: auto;
+            color: #bbb;
+        }
+
+        .skills {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background: #17171f;
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #111116;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>THARUN</h2>
+
+        <div>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Hi, I'm <span>Tharun</span> 👋</h1>
+
+        <p>
+            Welcome to my personal website.
+            I'm exploring technology, AI, web development and creative projects.
+        </p>
+
+        <a href="#about" class="button">Explore My Website</a>
+    </div>
+
+    <section id="about">
+        <h2>About Me</h2>
+
+        <p>
+            I'm passionate about technology and learning new things.
+            This website is my personal space where I can showcase
+            my projects, skills and interests.
+        </p>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">AI</div>
+            <div class="skill">Web Development</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+
+        <p>
+            You can add your Instagram, GitHub, YouTube or email links here.
+        </p>
+
+        <a href="https://github.com/tharun2726"
+           class="button"
+           target="_blank">
+            My GitHub
+        </a>
+    </section>
+
+    <footer>
+        © 2026 Tharun. All rights reserved.
+    </footer>
+
+</body>
+</html>
